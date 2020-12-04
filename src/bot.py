@@ -20,17 +20,9 @@ class MyClient(discord.Client):
         print('Logged on as {0}!'.format(self.user))
         channel = client.get_channel(chess_channel_id)
         await channel.send("Hello everyone!")
+
         for line in li.stream(users):
-            game = json.loads(line)
-            player_white = game['players']['white']['userId']
-            player_black=game['players']['black']['userId']
-            # TODO Have a real Game object here
-            game_state = "started" if game["status"] == 20 else "ended"
-            url = LICHESS_URL + game["id"]
-            message = "Game {} between {} and {}, URL is: {}".format(game_state,
-                                                             player_white,
-                                                             player_black,
-                                                             url)
+            message = li.game_to_message(line)
             print(message)
             await channel.send(message)
 

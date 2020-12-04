@@ -18,3 +18,17 @@ def stream(users):
         if line:
             print(line)
             yield line
+
+
+def game_to_message(line):
+    game = json.loads(line)
+    player_white = game['players']['white']['userId']
+    player_black=game['players']['black']['userId']
+    # TODO Have a real Game object here
+    game_state = "started" if game["status"] == 20 else "ended"
+    url = "https://lichess.org/" + game["id"]
+    return "Game {} between {} and {}, URL is: {}".format(game_state,
+                                                          player_white,
+                                                          player_black,
+                                                          url)
+
