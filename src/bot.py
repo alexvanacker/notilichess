@@ -11,15 +11,15 @@ TOKEN_KEY="BOT_TOKEN"
 LICHESS_URL="https://lichess.org/"
 
 
-channel_id = 774153683944210434
-channel_id = 780714868155351042
+chess_channel_id = 774153683944210434
 # TODO load this from a data store and add CRUD to edit that list
 users=["Le_Scratch","justmaker","kazeriahm","Khrok","paupausco"]
 
 class MyClient(discord.Client):
     async def on_ready(self):
         print('Logged on as {0}!'.format(self.user))
-        channel = client.get_channel(channel_id)
+        channel = client.get_channel(chess_channel_id)
+        await channel.send("Hello everyone!")
         for line in li.stream(users):
             game = json.loads(line)
             player_white = game['players']['white']['userId']
