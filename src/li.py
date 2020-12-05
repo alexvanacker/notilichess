@@ -25,8 +25,12 @@ def game_to_message(line):
     player_white = game['players']['white']['userId']
     player_black=game['players']['black']['userId']
     # TODO Have a real Game object here
-    game_state = "started" if game["status"] == 20 else "ended"
+    game_ended = game["status"] != 20
+    game_state = "ended" if game_ended else "started"
     url = "https://lichess.org/" + game["id"]
+    # Hack to break cache in discord with the Embed
+    if game_ended:
+        url += "?1"
     return "Game {} between {} and {}, URL is: {}".format(game_state,
                                                           player_white,
                                                           player_black,
