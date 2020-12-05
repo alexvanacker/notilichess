@@ -13,7 +13,7 @@ LICHESS_URL="https://lichess.org/"
 
 chess_channel_id = 774153683944210434
 # TODO load this from a data store and add CRUD to edit that list
-users=["Le_Scratch","justmaker","kazeriahm","Khrok","paupausco"]
+users=["Le_Scratch","justmaker","kazeriahm","Khrok","paupausco","rio77"]
 
 class MyClient(discord.Client):
     async def on_ready(self):
