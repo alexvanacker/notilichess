@@ -25,7 +25,7 @@
 
 on:
   release:
-    types: [published]
+    types: [published, created, released]
 
 name: Deploy to Amazon ECS
 
