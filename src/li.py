@@ -31,10 +31,10 @@ def game_to_message(line):
         # Hack to break cache in discord with the Embed
         if game_ended:
             url += "?1"
-            return "Game {} between {} and {}, URL is: {}".format(game_state,
-                                                                  player_white,
-                                                                  player_black,
-                                                                  url)
+        return "Game {} between {} and {}, URL is: {}".format(game_state,
+                                                              player_white,
+                                                              player_black,
+                                                              url)
     except Exception as e:
         print("Couldn't decode " + str(line)+", Exception: " + str(e))
 

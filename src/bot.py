@@ -24,7 +24,8 @@ class MyClient(discord.Client):
         for line in li.stream(users):
             message = li.game_to_message(line)
             print(message)
-            await channel.send(message)
+            if len(message) > 0:
+                await channel.send(message)
 
 
 client = MyClient()
