@@ -52,10 +52,6 @@
   "placementConstraints": [],
   "memory": null,
   "taskRoleArn": null,
-  "compatibilities": [
-    "EC2"
-  ],
-  "taskDefinitionArn": "arn:aws:ecs:eu-west-1:409736798658:task-definition/notilichess:2",
   "family": "notilichess",
   "requiresAttributes": [],
   "pidMode": null,
@@ -64,8 +60,6 @@
   ],
   "networkMode": null,
   "cpu": null,
-  "revision": 2,
-  "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,
   "volumes": []
