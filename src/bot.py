@@ -23,8 +23,8 @@ class MyClient(discord.Client):
 
         for line in li.stream(users):
             message = li.game_to_message(line)
-            print(message)
-            if len(message) > 0:
+            if message:
+                print('Sending message: {}'.format(message))
                 await channel.send(message)
 
 
