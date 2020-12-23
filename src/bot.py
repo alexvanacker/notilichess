@@ -19,7 +19,6 @@ class MyClient(discord.Client):
     async def on_ready(self):
         print('Logged on as {0}!'.format(self.user))
         channel = client.get_channel(chess_channel_id)
-        await channel.send("Hello everyone! Ready to see you play!")
 
         for line in li.stream(users):
             message = li.game_to_message(line)
