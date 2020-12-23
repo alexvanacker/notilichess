@@ -34,4 +34,4 @@ if not os.getenv(TOKEN_KEY):
     exit(1)
 token = os.getenv(TOKEN_KEY)
 
-client.run(os.getenv(TOKEN_KEY))
+client.run(token)
