@@ -8,10 +8,14 @@ import os
 description = ''' A bot that notifies when players are playing one another.'''
 load_dotenv()
 TOKEN_KEY="BOT_TOKEN"
+CHESS_CHANNEL_ID_KEY="CHESS_CHANNEL_ID"
 LICHESS_URL="https://lichess.org/"
 
 
-chess_channel_id = 774153683944210434
+
+chess_channel_id = int(os.getenv(CHESS_CHANNEL_ID_KEY))
+if not chess_channel_id:
+    logger.error("Could not read %s from .env file", CHESS_CHANNEL_ID_KEY)
 # TODO load this from a data store and add CRUD to edit that list
 users=["Le_Scratch","justmaker","kazeriahm","Khrok","paupausco","rio77","tbwtbw"]
 
