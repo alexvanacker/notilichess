@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 
 import requests
+import logging
 import json
 
-
+logger = logging.getLogger(__name__)
 GAMES_ENDPOINT="https://lichess.org/api/stream/games-by-users"
 
 def stream(users):
@@ -11,12 +12,15 @@ def stream(users):
     Call endpoint to see if any games are running for two of the given usernames.
     """
     userpayload = ",".join(users)
-    print("Starting streaming games for {}".format(users))
+    logger.info("Starting streaming games for %s", users)
     with requests.post(GAMES_ENDPOINT, data=userpayload, stream=True) as r:
-        for line in r.iter_lines(chunk_size=1):
-            if line:
-                print(line)
-                yield line
+        try:
+            for line in r.iter_lines(chunk_size=1):
+                if line:
+                    logger.debug("Got line: %s", line)
+                    yield line
+        except Exception as cee:
+            logger.exception("Error reading streams", cee)
 
 
 def game_to_message(line):
@@ -36,7 +40,6 @@ def game_to_message(line):
                                                               player_black,
                                                               url)
     except Exception as e:
-        print("Couldn't decode " + str(line)+", Exception: " + str(e))
-
+        logger.exception("Couldn't decode %s", line, e)
 
 
