@@ -35,7 +35,7 @@ jobs:
     - name: Create .env file
       run: |
         echo "BOT_TOKEN=${{ secrets.BOT_TOKEN }}" > .env
-        echo "CHESS_CHANNEL_ID=$${{ secrets.CHESS_CHANNEL_ID }}" >> .env
+        echo "CHESS_CHANNEL_ID=${{ secrets.CHESS_CHANNEL_ID }}" >> .env
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
