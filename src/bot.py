@@ -35,13 +35,16 @@ class MyClient(discord.Client):
         if not channel:
             logger.error("Could not access channel %s", chess_channel_id)
 
-
         logger.info('Will notify on %s', channel.name)
-        for line in li.stream(users):
-            message = li.game_to_message(line)
-            if message:
-                logger.info('Sending message: %s', message)
-                await channel.send(message)
+        while True:
+            try:
+                for message in li.stream(users):
+                    if message:
+                        logger.info('Sending message: %s', message)
+                        await channel.send(message)
+            except:
+                logger.exception("Error while streaming")
+                pass
 
 
 client = MyClient()
